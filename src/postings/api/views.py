@@ -6,7 +6,7 @@ from postings.models import BlogPost
 from .serializers import *
 from .permissions import *
 
-
+# api endpoints
 class RegisterAPI(generics.GenericAPIView):
 	serializer_class = RegisterSerializer
 
