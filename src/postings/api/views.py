@@ -16,6 +16,24 @@ class RegisterAPI(generics.GenericAPIView):
 		user = serializer.save()
 		return Response({"response":"registration successful"})
 
+
+class BlogPostCustomerAPIView(mixins.CreateModelMixin, generics.ListAPIView): # can also use listcreateapiview
+	serializer_class = BlogPostSerializer
+	permission_classes = [IsOwnerOrReadOnly]
+
+	def get_queryset(self):
+		# 127.0.0.1:8000/api/postings/?q=posts hi
+		qs = BlogPost.objects.all() # requires to login user in tests
+		return qs
+
+	# to add the port and main url, add this to the serializer context and the
+	# get it in the serializer class get_url
+	# and pass it in models get_api_url as argument
+	def get_serializer_context(self, *args, **kwargs):
+		return {"request":self.request}
+
+
+
 class BlogPostAPIView(mixins.CreateModelMixin, generics.ListAPIView): # can also use listcreateapiview
 	serializer_class = BlogPostSerializer
 	permission_classes = [IsOwnerOrReadOnly]

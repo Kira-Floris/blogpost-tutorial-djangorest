@@ -6,14 +6,6 @@ from rest_framework import status
 
 from rest_framework.test import APIClient
 from rest_framework_simplejwt.tokens import RefreshToken
-
-# from rest_framework_simplejwt.settings import api_settings
-
-# payload_handler = api_settings.SIMPLEJWT_PAYLOAD_HANDLER
-# encode_handler = api_settings.JWT_ENCODE_HANDLER
-
-# Create your tests here.
-
 from postings.models import *
 User = get_user_model()
 

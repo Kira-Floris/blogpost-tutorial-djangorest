@@ -22,7 +22,7 @@ class BlogPostSerializer(serializers.ModelSerializer):
 		return obj.get_api_url(request=request)
 
 	def validate_title(self, value):
-		qs = BlogPost.objects.filter(title__iexact=value).exclude(pk=self.instance.pk)
+		qs = BlogPost.objects.filter(title__iexact=value)
 		# it doesnt allow updating with same title even though its for the same instance of blogpost
 		# so we add this function of exclude
 		if qs.exists():
